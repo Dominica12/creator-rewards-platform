@@ -1,23 +1,270 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Creator Rewards Platform - Backend API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A comprehensive NestJS-based backend API for the Creator Rewards Platform that manages creator content tracking, engagement analytics, and reward distribution.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
+## 🚀 Features
+
+- **User Management**: Registration, authentication, and profile management
+- **Creator Profiles**: Creator onboarding, verification, and tier management
+- **Content Tracking**: Multi-platform content monitoring and analytics
+- **Engagement Analytics**: Real-time engagement tracking and metrics
+- **Reward System**: Automated reward calculation and distribution
+- **Fraud Prevention**: Built-in security and fraud detection mechanisms
+- **API Documentation**: Comprehensive Swagger/OpenAPI documentation
+- **Database Integration**: PostgreSQL with TypeORM
+- **Caching**: Redis integration for performance optimization
+- **Security**: JWT authentication, rate limiting, and input validation
+
+## 🛠 Tech Stack
+
+- **Framework**: NestJS (Node.js)
+- **Language**: TypeScript
+- **Database**: PostgreSQL
+- **ORM**: TypeORM
+- **Cache**: Redis
+- **Authentication**: JWT + Passport
+- **Documentation**: Swagger/OpenAPI
+- **Validation**: class-validator
+- **Security**: bcrypt, throttling, CORS
+
+## 📋 Prerequisites
+
+- Node.js (v18 or higher)
+- PostgreSQL (v12 or higher)
+- Redis (v6 or higher)
+- npm or yarn
+
+## 🔧 Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd creator-rewards-platform/backend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Environment Setup**
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Update the `.env` file with your configuration:
+   ```env
+   # Database Configuration
+   DB_HOST=localhost
+   DB_PORT=5432
+   DB_USERNAME=postgres
+   DB_PASSWORD=your_password
+   DB_NAME=creator_rewards
+   
+   # JWT Configuration
+   JWT_SECRET=your-super-secret-jwt-key
+   JWT_EXPIRES_IN=24h
+   
+   # Redis Configuration
+   REDIS_HOST=localhost
+   REDIS_PORT=6379
+   ```
+
+4. **Database Setup**
+   ```bash
+   # Create database
+   createdb creator_rewards
+   
+   # Run migrations (auto-sync enabled in development)
+   npm run start:dev
+   ```
+
+## 🚀 Running the Application
+
+### Development
+```bash
+npm run start:dev
+```
+
+### Production
+```bash
+npm run build
+npm run start:prod
+```
+
+### Watch Mode
+```bash
+npm run start:debug
+```
+
+## 📚 API Documentation
+
+Once the application is running, visit:
+- **Swagger UI**: http://localhost:3000/api/docs
+- **API Base URL**: http://localhost:3000/api/v1
+
+## 🏗 Project Structure
+
+```
+src/
+├── auth/                   # Authentication module
+│   ├── dto/               # Data transfer objects
+│   ├── auth.controller.ts # Auth endpoints
+│   ├── auth.service.ts    # Auth business logic
+│   ├── jwt.strategy.ts    # JWT authentication strategy
+│   ├── local.strategy.ts  # Local authentication strategy
+│   └── auth.module.ts     # Auth module configuration
+├── user/                  # User management module
+│   ├── user.controller.ts # User endpoints
+│   ├── user.service.ts    # User business logic
+│   └── user.module.ts     # User module configuration
+├── creator/               # Creator management module
+│   ├── dto/               # Creator DTOs
+│   ├── creator.controller.ts # Creator endpoints
+│   ├── creator.service.ts    # Creator business logic
+│   └── creator.module.ts     # Creator module configuration
+├── entities/              # Database entities
+│   ├── user.entity.ts     # User entity
+│   ├── creator.entity.ts  # Creator entity
+│   ├── content.entity.ts  # Content entity
+│   ├── engagement.entity.ts # Engagement entity
+│   ├── reward.entity.ts   # Reward entity
+│   ├── transaction.entity.ts # Transaction entity
+│   └── audit-log.entity.ts   # Audit log entity
+├── config/               # Configuration files
+│   ├── database.config.ts # Database configuration
+│   └── configuration.ts   # Application configuration
+├── app.module.ts         # Root application module
+└── main.ts              # Application entry point
+```
+
+## 🗄 Database Schema
+
+### Core Entities
+
+- **Users**: User accounts and authentication
+- **Creators**: Creator profiles and statistics
+- **Content**: Content items across platforms
+- **Engagements**: User interactions with content
+- **Rewards**: Reward calculations and distributions
+- **Transactions**: Payment and financial records
+- **AuditLogs**: System activity tracking
+
+## 🔐 Authentication
+
+The API uses JWT-based authentication:
+
+1. **Register**: `POST /api/v1/auth/register`
+2. **Login**: `POST /api/v1/auth/login`
+3. **Profile**: `GET /api/v1/auth/profile` (requires Bearer token)
+
+### Example Usage
+
+```bash
+# Register
+curl -X POST http://localhost:3000/api/v1/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","username":"testuser","password":"password123"}'
+
+# Login
+curl -X POST http://localhost:3000/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","password":"password123"}'
+
+# Use token in subsequent requests
+curl -X GET http://localhost:3000/api/v1/auth/profile \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
+
+## 🎯 Key API Endpoints
+
+### Authentication
+- `POST /api/v1/auth/register` - User registration
+- `POST /api/v1/auth/login` - User login
+- `GET /api/v1/auth/profile` - Get current user profile
+- `POST /api/v1/auth/refresh` - Refresh JWT token
+
+### Users
+- `GET /api/v1/users` - Get all users (Admin)
+- `GET /api/v1/users/:id` - Get user by ID
+- `PATCH /api/v1/users/profile` - Update current user profile
+- `POST /api/v1/users/:id/verify-email` - Verify user email
+
+### Creators
+- `POST /api/v1/creators` - Register as creator
+- `GET /api/v1/creators` - Get all creators (Admin)
+- `GET /api/v1/creators/me` - Get current creator profile
+- `GET /api/v1/creators/top` - Get top creators
+- `GET /api/v1/creators/search` - Search creators
+- `PATCH /api/v1/creators/:id/status` - Update creator status (Admin)
+- `PATCH /api/v1/creators/:id/tier` - Update creator tier (Admin)
+
+## 🧪 Testing
+
+```bash
+# Unit tests
+npm run test
+
+# E2E tests
+npm run test:e2e
+
+# Test coverage
+npm run test:cov
+```
+
+## 📊 Monitoring and Logging
+
+- **Health Check**: `GET /api/v1/health`
+- **Metrics**: Built-in request logging
+- **Rate Limiting**: 100 requests per minute per IP
+- **Audit Logging**: All significant actions logged
+
+## 🔒 Security Features
+
+- **JWT Authentication**: Secure token-based auth
+- **Password Hashing**: bcrypt with salt rounds
+- **Input Validation**: class-validator decorators
+- **Rate Limiting**: Request throttling
+- **CORS Protection**: Configurable origins
+- **SQL Injection Prevention**: TypeORM parameterized queries
+
+## 🚀 Deployment
+
+### Docker (Future Enhancement)
+```bash
+# Build image
+docker build -t creator-rewards-api .
+
+# Run container
+docker run -p 3000:3000 creator-rewards-api
+```
+
+### Environment Variables for Production
+```env
+NODE_ENV=production
+DB_SYNCHRONIZE=false
+DB_LOGGING=false
+JWT_SECRET=your-production-secret
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 📞 Support
+
+For support and questions:
+- Create an issue in the repository
+- Check the API documentation at `/api/docs`
+- Review the codebase for implementation details
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
